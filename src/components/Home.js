@@ -11,8 +11,8 @@ export default function Home() {
       <h1>Starbucks App</h1>
       <img
         width="50"
-        src="/logo.png"
-        alt=""
+        src={process.env.PUBLIC_URL + '/logo.png'}
+        alt="logo"
       />
       <p>
         10/12 Stars, 2 until next Reward
