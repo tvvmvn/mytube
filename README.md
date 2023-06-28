@@ -4,7 +4,7 @@ The example "Starbucks App" is written in React.
 
 ---
 
-![Some text](https://github.com/tvvmvn/instagram-clone-master/raw/main/server/public/images/apps.png?raw=true)
+![Some text](https://github.com/tvvmvn/starbucks-app/tree/main/public/images/apps.png)
 
 ## Quick Start
 
