@@ -4,7 +4,7 @@ The example "Starbucks App" is written in React.
 
 ---
 
-![Some text](https://github.com/tvvmvn/starbucks-app/tree/main/logo.png)
+![Some text](https://github.com/tvvmvn/starbucks-app/tree/main/apps.png)
 
 ## Quick Start
 
