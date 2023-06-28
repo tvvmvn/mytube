@@ -1,3 +1,4 @@
+import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 
 const DATA = [
@@ -13,8 +14,24 @@ const DATA = [
 export default function Menu() {
 
   const { menuId } = useParams();
-  // fetching data
+  const [cart, setCart] = useState(JSON.parse(localStorage.getItem("cart") || "[]"))
+  const [inCart, setInCart] = useState(false);
+  // role as fetching data
   const menu = DATA.find(menu => menu.menuId == menuId); 
+
+  useEffect(() => {
+    cart.forEach(item => {
+      if (item === menuId) {
+        setInCart(true)
+      }
+    })
+  }, [])
+
+  function addToCart() {
+    const updatedCart = [...cart, menuId];
+    localStorage.setItem("cart", JSON.stringify(updatedCart));
+    setInCart(true);
+  }
 
   return (
     <>
@@ -22,7 +39,7 @@ export default function Menu() {
         {menu.name}
       </h1>
       <p>description</p>
-      <button>
+      <button onClick={addToCart} disabled={inCart}>
         Add To Cart
       </button>
     </>  

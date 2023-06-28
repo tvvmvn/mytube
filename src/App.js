@@ -10,6 +10,7 @@ import Other from "./components/Other";
 import Pay from "./components/Pay";
 import Group from "./components/Group";
 import Menu from "./components/Menu";
+import Cart from "./components/Cart";
 import NotFound from "./components/NotFound";
 
 export default function App() {
@@ -29,6 +30,9 @@ export default function App() {
           <li>
             <Link to="/other">Other</Link>
           </li>
+          <li>
+            <Link to="/cart">Cart</Link>
+          </li>
         </ul>
       </nav>
 
@@ -39,6 +43,7 @@ export default function App() {
         <Route path="group/:groupId" element={<Group />} />
         <Route path="menu/:menuId" element={<Menu />} />
         <Route path="other" element={<Other />} />
+        <Route path="cart" element={<Cart />} />
         <Route path="*" element={<NotFound />} />
       </Routes>
     </Router>  
