@@ -14,22 +14,30 @@ const DATA = [
 export default function Menu() {
 
   const { menuId } = useParams();
-  const [cart, setCart] = useState(JSON.parse(localStorage.getItem("cart") || "[]"))
+  const cart = JSON.parse(localStorage.getItem("cart") || "[]");
   const [inCart, setInCart] = useState(false);
-  // role as fetching data
   const menu = DATA.find(menu => menu.menuId == menuId); 
 
   useEffect(() => {
     cart.forEach(item => {
-      if (item === menuId) {
+      if (item.menu.menuId == menuId) {
         setInCart(true)
       }
     })
   }, [])
 
   function addToCart() {
-    const updatedCart = [...cart, menuId];
+    // send menuId to server 
+    const newItem = { 
+      id: "u" + Date.now(), 
+      menu,
+      created: new Date(),
+      count: 1
+    }
+      
+    const updatedCart = [...cart, newItem];
     localStorage.setItem("cart", JSON.stringify(updatedCart));
+
     setInCart(true);
   }
 
