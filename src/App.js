@@ -1,22 +1,40 @@
 import { useState, useEffect } from 'react';
+import { isOneWeekSinceThen } from './utils/dateTime';
+
+const surveyOptions = [
+  { id: "s0", name: "Seoul" },
+  { id: "s1", name: "New York" },
+  { id: "s2", name: "London" },
+  { id: "s3", name: "Tokyo" },
+];
 
 export default function App() {
   const [navActive, setNavActive] = useState(false);
-  const [blocked, setBlocked] = useState(localStorage.getItem("blockedAt"));
+  const [promoActive, setPromoActive] = useState(true);
 
-  const [surveyOptions, setSurveyOptions] = useState([
-    { id: "s0", name: "Seoul" },
-    { id: "s1", name: "New York" },
-    { id: "s2", name: "London" },
-    { id: "s3", name: "Tokyo" },
-  ]);
+  useEffect(() => {
+    handlePromo();
+  }, [])
 
-  // make promo appear once in a week.
-  function blockPromo() {
-    localStorage.setItem("blockedAt", new Date());
+  function handlePromo() {
+    const blockedAt = localStorage.getItem("blockedAt");
+
+    if (isOneWeekSinceThen(blockedAt)) {
+      localStorage.removeItem("blockedAt");
+      setPromoActive(true);
+    }
+  
+    if (blockedAt) {
+      setPromoActive(false);
+    }
   }
 
-  const optionList = surveyOptions.map((option, index) => (
+  function blockPromo() {
+    localStorage.setItem("blockedAt", new Date());
+    setPromoActive(false)
+  }
+
+  const optionList = surveyOptions.map(option => (
     <li key={option.id} className="mb-2">
       <input 
         type="radio" 
@@ -24,12 +42,13 @@ export default function App() {
         id={option.name} 
         value={option.name}
         className="peer hidden" 
-        onChange={() => console.log(option.name)}
+        onChange={() => console.log("You chose:", option.name)}
       />
       <label 
         htmlFor={option.name}
         className="block p-2 border peer-checked:outline"
-      >{++index}. {option.name}
+      >
+        {option.name}
       </label>
     </li>
   ))
@@ -85,18 +104,18 @@ export default function App() {
         </p>
 
         {/* SURVEY */}
-          <h3 className="text-lg my-4 font-semibold">What do you think about YouTube?</h3>
-          <ul>
-            {optionList}
-          </ul>
+        <h3 className="text-lg my-4 font-semibold">What do you think about YouTube?</h3>
+        <ul>
+          {optionList}
+        </ul>
       </main>
 
       {/* PROMOTION */}
-      {!blocked && (
+      {promoActive && (
         <div className="fixed inset-0 bg-black/[0.2]">
           <div className="absolute bottom-0 m-4 bg-white px-4 pb-4 border">
+            <h3 className="text-xl my-4">Try YouTube Premium</h3>
             <p className="my-4">
-              <h3 className="text-xl my-4">Try YouTube Premium</h3>
               Lorem ipsum dolor sit amet, consectetur adipisicing elit.
               Maiores modi quod fuga, accusamus officiis quos enim. Iusto, dignissimos?
               Ipsa error quo iste quisquam delectus doloremque voluptas vero aliquid quod obcaecati!
