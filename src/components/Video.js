@@ -7,21 +7,13 @@ const videos = [
   { id: "v3", name: "Why do people loves K-Food", category: "Food" },
 ]
 
-const filters = {
-  All: () => true,
-  Music: ({ category }) => category === "Music",
-  Travel: ({ category }) => category === "Travel",
-  Food: ({ category }) => category === "Food",
-}
-
-
-export default function Video({ filter }) {
+export default function Video({ filter, FILTER_MAP }) {
 
   const videoList = videos
-    .filter(filters[filter])
+    .filter(FILTER_MAP[filter])
     .map(video => (
       <li key={video.id} className="mb-8">
-        <div className="h-48 bg-gray-200"></div>
+        <div className="h-48 bg-zinc-800 rounded-xl"></div>
         <h3 className="text-white font-semibold my-2">
           {video.name}
         </h3>
