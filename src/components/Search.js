@@ -18,7 +18,7 @@ export default function Search() {
     .map(name => (
       <li 
         key={name}
-        className="mb-2"
+        className="mb-2 text-white"
       >
         {name}
       </li>  
@@ -30,10 +30,10 @@ export default function Search() {
   }
 
   const modal = (
-    <div className="fixed inset-0 bg-white/[0.9]">
+    <div className="fixed inset-0 bg-black/[0.8]">
       <div className="flex justify-end">
         <button 
-          className="text-2xl p-4"
+          className="text-2xl p-4 text-white"
           onClick={handleClick}
         >
           &times;
@@ -44,7 +44,7 @@ export default function Search() {
           className="w-full p-2 border mb-4 outline-none"
           type="text" 
           onChange={({ target }) => setQ(target.value)}
-          placeholder='Search YouTube'
+          placeholder='Search MyTube'
           ref={inputEl}
         />
         <ul>
@@ -57,7 +57,7 @@ export default function Search() {
   return (
     <>
       <svg
-        className="w-6"
+        className="w-6 fill-white"
         xmlns="http://www.w3.org/2000/svg"
         viewBox="0 0 512 512"
         onClick={() => setActive(true)}

@@ -14,39 +14,23 @@ const filters = {
   Food: ({ category }) => category === "Food",
 }
 
-const FILTER_NAMES = Object.keys(filters);
 
-export default function Video() {
-  const [filter, setFilter] = useState("All");
-
-  const filterButtons = FILTER_NAMES.map(name => (
-    <button 
-      key={name} 
-      className="px-4 py-1 bg-gray-200 disabled:bg-black disabled:text-white"
-      onClick={() => setFilter(name)}
-      disabled={name === filter}
-    >
-      {name}
-    </button>  
-  ))
+export default function Video({ filter }) {
 
   const videoList = videos
     .filter(filters[filter])
     .map(video => (
-      <li key={video.id}>
-        {video.name}
+      <li key={video.id} className="mb-8">
+        <div className="h-48 bg-gray-200"></div>
+        <h3 className="text-white font-semibold my-2">
+          {video.name}
+        </h3>
       </li>
     ))
 
   return (
-    <>
-      <div className="flex gap-2">
-        {filterButtons}
-      </div>
-
-      <ul className="my-4">
-        {videoList}
-      </ul>
-    </>
+    <ul>
+      {videoList}
+    </ul>
   )
 }

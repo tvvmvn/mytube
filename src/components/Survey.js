@@ -1,39 +1,43 @@
 import { useState } from "react";
 
-const OPTIONS = ["Staria", "IONIQ", "KONA", "Casper"];
+const OPTIONS = [
+  { id: "s0", name: "Staria" },
+  { id: "s1", name: "Avante" },
+  { id: "s2", name: "KONA" },
+  { id: "s3", name: "Casper" },
+];
 
 export default function Survey() {
-  const [selected, setSelected] = useState(localStorage.getItem("survey"));
+  const [selected, setSelected] = useState(localStorage.getItem("survey") || false);
 
-  function handleChange(name) {
-    console.log("You chose:", name);
-    localStorage.setItem("survey", name);
-    setSelected(name)
+  function handleChange(id) {
+    console.log("You chose:", id);
+    localStorage.setItem("survey", id);
+    setSelected(id);
   }
 
-  const optionList = OPTIONS.map(name => (
-    <li key={name} className="mb-2">
+  const optionList = OPTIONS.map(option => (
+    <li key={option.id} className="mb-2">
       <input
         type="radio"
-        id={name}
+        id={option.id}
         name="survey"
         className="peer hidden"
-        value={name}
-        checked={name === selected}
-        onChange={() => handleChange(name)}
+        checked={option.id === selected}
+        onChange={() => handleChange(option.id)}
       />
       <label
-        htmlFor={name}
-        className="block p-2 border peer-checked:outline"
+        htmlFor={option.id}
+        className="block p-2 border-2 rounded border-gray-400 text-gray-400 peer-checked:border-sky-600"
       >
-        {name}
+        {option.name}
       </label>
     </li>
   ))
 
   return (
     <>
-      <h3 className="text-lg my-4 font-semibold">
+      <h3 className="text-lg my-4 font-semibold text-white">
         Which car do you want to purchase?
       </h3>
 
