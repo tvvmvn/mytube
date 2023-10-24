@@ -7,12 +7,16 @@ const OPTIONS = [
   { id: "s3", name: "Casper" },
 ];
 
+// synchronize storage
+function saveData(id) {
+  localStorage.setItem("survey", id);
+}
+
 export default function Survey() {
-  const [selected, setSelected] = useState(localStorage.getItem("survey") || false);
+  const [selectedId, setSelected] = useState(localStorage.getItem("survey") || false);
 
   function handleChange(id) {
-    console.log("You chose:", id);
-    localStorage.setItem("survey", id);
+    saveData(id)
     setSelected(id);
   }
 
@@ -23,7 +27,7 @@ export default function Survey() {
         id={option.id}
         name="survey"
         className="peer hidden"
-        checked={option.id === selected}
+        checked={option.id === selectedId}
         onChange={() => handleChange(option.id)}
       />
       <label
@@ -38,7 +42,7 @@ export default function Survey() {
   return (
     <>
       <h3 className="text-lg my-4 font-semibold text-white">
-        Which car do you want to purchase?
+        어떤 차를 사고싶습니까?
       </h3>
 
       <ul>
