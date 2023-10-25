@@ -1,10 +1,10 @@
 import { useState } from "react";
 
 const OPTIONS = [
-  { id: "s0", name: "Staria" },
-  { id: "s1", name: "Avante" },
-  { id: "s2", name: "KONA" },
-  { id: "s3", name: "Casper" },
+  { id: "s0", name: "스타리아" },
+  { id: "s1", name: "아반떼 하이브리드" },
+  { id: "s2", name: "코나" },
+  { id: "s3", name: "캐스퍼" },
 ];
 
 // synchronize storage
@@ -20,7 +20,7 @@ export default function Survey() {
     setSelected(id);
   }
 
-  const optionList = OPTIONS.map(option => (
+  const optionList = OPTIONS.map((option, index) => (
     <li key={option.id} className="mb-2">
       <input
         type="radio"
@@ -32,9 +32,9 @@ export default function Survey() {
       />
       <label
         htmlFor={option.id}
-        className="block p-2 border-2 rounded border-gray-400 text-gray-400 peer-checked:border-sky-600"
+        className="block p-2 border-2 rounded border-gray-400 text-gray-400 peer-checked:border-sky-600 peer-checked:text-sky-600"
       >
-        {option.name}
+        {++index}. {option.name}
       </label>
     </li>
   ))
@@ -42,12 +42,12 @@ export default function Survey() {
   return (
     <>
       <h3 className="text-lg my-4 font-semibold text-white">
-        어떤 차를 사고싶습니까?
+        다음 중 어떤 차를 사시겠습니까?
       </h3>
 
-      <ul>
+      <ol>
         {optionList}
-      </ul>
+      </ol>
     </>
   )
 }

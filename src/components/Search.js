@@ -1,12 +1,12 @@
 import { useState, useEffect, useRef } from 'react';
 
 const TITLES = [
-  "seoul", 
-  "tokyo", 
-  "new york", 
-  "london",
-  "rome",
-  "berlin"
+  "autumn leaves not cole king", 
+  "all of me john legend", 
+  "a legend of ashitaka joe hisashi", 
+  "river flows in you yiruma",
+  "midnight randevous casiopea",
+  "i believe i can fly rkelly"
 ];
 
 export default function Search({ setActive }) {
