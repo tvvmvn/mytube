@@ -1,7 +1,7 @@
 {
   "name": "view-app",
   "version": "0.1.0",
-  "homepage": "https://tvvmvn.github.io/starbucks-app",
+  "homepage": "https://tvvmvn.github.io/mytube",
   "private": true,
   "dependencies": {
     "@testing-library/jest-dom": "^5.16.5",
