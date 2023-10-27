@@ -34,7 +34,7 @@ export default function Survey() {
         htmlFor={option.id}
         className="block p-2 border-2 rounded border-gray-400 text-gray-400 peer-checked:border-sky-600 peer-checked:text-sky-600"
       >
-        {++index}. {option.name}
+        {++index} {option.name}
       </label>
     </li>
   ))
@@ -42,7 +42,7 @@ export default function Survey() {
   return (
     <>
       <h3 className="text-lg my-4 font-semibold text-white">
-        다음 중 어떤 차를 사시겠습니까?
+        다음 중 어떤 차를 구매하시겠습니까?
       </h3>
 
       <ol>
