@@ -13,11 +13,11 @@ function saveData(id) {
 }
 
 export default function Survey() {
-  const [selectedId, setSelected] = useState(localStorage.getItem("survey") || false);
+  const [selectedId, setSelectedId] = useState(localStorage.getItem("survey"));
 
   function handleChange(id) {
     saveData(id)
-    setSelected(id);
+    setSelectedId(id);
   }
 
   const optionList = OPTIONS.map((option, index) => (
@@ -34,7 +34,7 @@ export default function Survey() {
         htmlFor={option.id}
         className="block p-2 border-2 rounded border-gray-400 text-gray-400 peer-checked:border-sky-600 peer-checked:text-sky-600"
       >
-        {++index} {option.name}
+        {++index}. {option.name}
       </label>
     </li>
   ))

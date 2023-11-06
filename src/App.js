@@ -1,20 +1,20 @@
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import Survey from './components/Survey';
 import Search from './components/Search';
 import SideBar from './components/SideBar';
 
 const VIDEOS = [
-  { id: "v1", name: "NAT KING COLE 2023 Mix ~ The Best of NAT KING COLE Greatest Hits", src: "/images/nat-cole-king.webp", category: "music" },
-  { id: "v0", name: "YIRUMA - Best Playlist Ever - Relax Beautiful Music", src: "/images/yiruma.webp", category: "music" },
-  { id: "v2", name: "16 Best Places to Visit in Norway - Travel Video", src: "/images/norway.webp", category: "travel" },
+  { id: "v1", name: "The Best of NAT KING COLE Greatest Hits", src: "/images/nat-cole-king.webp", category: "music" },
+  { id: "v0", name: "YIRUMA - Best Playlist Ever", src: "/images/yiruma.webp", category: "music" },
+  { id: "v2", name: "16 Best Places to Visit in Norway", src: "/images/norway.webp", category: "travel" },
   { id: "v3", name: "2023 Genesis G90 Review! $100,000 Rolls-Royce", src: "/images/genesis.webp", category: "car" },
 ]
 
 const FILTER_MAP = {
   전체: () => true,
-  음악: ({ category }) => category == "music",
-  여행: ({ category }) => category == "travel",
-  자동차: ({ category }) => category == "car",
+  음악: ({ category }) => category === "music",
+  여행: ({ category }) => category === "travel",
+  자동차: ({ category }) => category === "car",
 }
 
 const FILTER_NAMES = Object.keys(FILTER_MAP);
@@ -54,18 +54,18 @@ export default function App() {
       <header className="fixed w-full top-0 box-content bg-black">
         <div className="flex justify-between h-12">
           <div className="flex items-center">
-            <button
-              className="px-4 h-full"
-              onClick={() => setSideBarActive(true)}
+          <button
+            className="px-4 h-full"
+            onClick={() => setSideBarActive(true)}
+          >
+            <svg
+              className="w-4 fill-white"
+              xmlns="http://www.w3.org/2000/svg"
+              viewBox="0 0 448 512"
             >
-              <svg
-                className="w-4 fill-white"
-                xmlns="http://www.w3.org/2000/svg"
-                viewBox="0 0 448 512"
-              >
-                <path d="M0 96C0 78.3 14.3 64 32 64H416c17.7 0 32 14.3 32 32s-14.3 32-32 32H32C14.3 128 0 113.7 0 96zM0 256c0-17.7 14.3-32 32-32H416c17.7 0 32 14.3 32 32s-14.3 32-32 32H32c-17.7 0-32-14.3-32-32zM448 416c0 17.7-14.3 32-32 32H32c-17.7 0-32-14.3-32-32s14.3-32 32-32H416c17.7 0 32 14.3 32 32z" />
-              </svg>
-            </button>
+              <path d="M0 96C0 78.3 14.3 64 32 64H416c17.7 0 32 14.3 32 32s-14.3 32-32 32H32C14.3 128 0 113.7 0 96zM0 256c0-17.7 14.3-32 32-32H416c17.7 0 32 14.3 32 32s-14.3 32-32 32H32c-17.7 0-32-14.3-32-32zM448 416c0 17.7-14.3 32-32 32H32c-17.7 0-32-14.3-32-32s14.3-32 32-32H416c17.7 0 32 14.3 32 32z" />
+            </svg>
+          </button>
             <div className="flex items-center">
               <svg 
                 className="w-8 fill-white"
@@ -98,19 +98,21 @@ export default function App() {
         </div>
       </header>
 
-      {searchActive && (
-        <Search setActive={setSearchActive} />
-      )}
+      <Search 
+        active={searchActive} 
+        setActive={setSearchActive}
+      />
 
       <SideBar 
-        active={sideBarActive} 
-        setActive={setSideBarActive} 
+        active={sideBarActive}
+        setActive={setSideBarActive}
       />
 
       <main className="mt-32 px-4 pb-8">
         <ul>
           {videoList}
         </ul>
+        
         <Survey />
       </main>
     </>
