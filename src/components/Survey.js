@@ -20,7 +20,7 @@ export default function Survey() {
     setSelectedId(id);
   }
 
-  const optionList = OPTIONS.map((option, index) => (
+  const optionList = OPTIONS.map(option => (
     <li key={option.id} className="mb-2">
       <input
         type="radio"
@@ -34,7 +34,7 @@ export default function Survey() {
         htmlFor={option.id}
         className="block p-2 border-2 rounded border-gray-400 text-gray-400 peer-checked:border-sky-600 peer-checked:text-sky-600"
       >
-        {++index}. {option.name}
+        {option.name}
       </label>
     </li>
   ))
