@@ -1,12 +1,2 @@
-# MyTube 구현된 기능
-
-1. 사이드바 
-
-2. 필터 버튼
-
-3. 검색 기능
-- 오토 포커스 기능
-- 실시간 검색
-
-4. 설문조사
-- 로컬 스토리지에 선택결과가 저장된다
+# MyTube 
+[https://tvvmvn.github.io/mytube](https://tvvmvn.github.io/mytube)
